@@ -1,5 +1,8 @@
+use rand::{self, Rng};
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
+use std::thread;
+use std::time::Duration;
 
 const PORT: u16 = 12321;
 
@@ -36,6 +39,8 @@ impl Server {
             let val = u64::from_be_bytes(*buf);
             // TODO: send work to threadpool
             println!("    (Server) Received: {}", val);
+            let delay = rand::thread_rng().gen_range(10..=2000);
+            thread::sleep(Duration::from_millis(delay));
             let out = val * val;
             let msg = out.to_be_bytes();
             stream.write(&msg).unwrap();
