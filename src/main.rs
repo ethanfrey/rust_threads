@@ -5,6 +5,7 @@ use std::time::{Duration, Instant};
 mod tcp;
 mod threadpool;
 
+#[allow(dead_code)]
 fn run_threadpool() {
     let start = Instant::now();
 
@@ -50,7 +51,7 @@ fn run_network() {
 }
 
 fn main() {
-    run_threadpool();
+    // run_threadpool();
 
     run_network();
 }
